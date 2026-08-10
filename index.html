@@ -1,1807 +1,614 @@
+```html
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="VILNOMOV — сучасні онлайн-курси української мови. Вивчайте українську з будь-якого пристрою.">
-    <title>VILNOMOV — Вивчай українську впевнено</title>
-
-    <style>
-        /* =========================
-           RESET & GLOBAL
-        ========================= */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            color: #172033;
-            background: #f8fbfd;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        button {
-            font: inherit;
-            cursor: pointer;
-        }
-
-        .container {
-            width: min(1180px, calc(100% - 40px));
-            margin: 0 auto;
-        }
-
-        .section {
-            padding: 100px 0;
-        }
-
-        .section-label {
-            display: inline-block;
-            margin-bottom: 14px;
-            color: #238fd1;
-            font-size: 14px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        .section-title {
-            max-width: 720px;
-            margin-bottom: 18px;
-            font-size: clamp(34px, 5vw, 58px);
-            line-height: 1.05;
-            letter-spacing: -2px;
-        }
-
-        .section-subtitle {
-            max-width: 650px;
-            color: #68768b;
-            font-size: 18px;
-        }
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            width: 100%;
-            background: rgba(248, 251, 253, 0.88);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(30, 60, 90, 0.07);
-            transition: 0.3s ease;
-        }
-
-        header.scrolled {
-            box-shadow: 0 8px 30px rgba(20, 45, 70, 0.08);
-        }
-
-        .nav {
-            height: 76px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 950;
-            letter-spacing: -1px;
-            color: #172033;
-        }
-
-        .logo span {
-            color: #249ce0;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 34px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #526177;
-            font-size: 15px;
-            font-weight: 700;
-            transition: 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: #168dd0;
-        }
-
-        .nav-button {
-            padding: 12px 20px;
-            border: 0;
-            border-radius: 12px;
-            background: #172033;
-            color: white !important;
-        }
-
-        .nav-button:hover {
-            background: #249ce0;
-        }
-
-        .menu-button {
-            display: none;
-            width: 44px;
-            height: 44px;
-            border: 1px solid #dce6ee;
-            border-radius: 12px;
-            background: white;
-            font-size: 22px;
-        }
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            position: relative;
-            min-height: 850px;
-            display: flex;
-            align-items: center;
-            padding-top: 100px;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            width: 550px;
-            height: 550px;
-            top: -100px;
-            right: -180px;
-            background: #dff4ff;
-            border-radius: 50%;
-            filter: blur(5px);
-            z-index: -2;
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            width: 380px;
-            height: 380px;
-            bottom: -150px;
-            left: -100px;
-            background: #fff1a8;
-            border-radius: 50%;
-            z-index: -2;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.05fr 0.95fr;
-            align-items: center;
-            gap: 70px;
-        }
-
-        .hero-content {
-            animation: fadeUp 0.8s ease both;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            margin-bottom: 25px;
-            padding: 8px 14px;
-            border: 1px solid #ccebf9;
-            border-radius: 100px;
-            background: rgba(255, 255, 255, 0.75);
-            color: #238dca;
-            font-size: 13px;
-            font-weight: 800;
-        }
-
-        .hero-badge-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #249ce0;
-        }
-
-        .hero h1 {
-            max-width: 720px;
-            margin-bottom: 25px;
-            font-size: clamp(48px, 7vw, 82px);
-            line-height: 0.98;
-            letter-spacing: -4px;
-        }
-
-        .hero h1 span {
-            color: #2298d9;
-        }
-
-        .hero-text {
-            max-width: 620px;
-            margin-bottom: 35px;
-            color: #66758a;
-            font-size: 19px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
-        .primary-button,
-        .secondary-button {
-            min-height: 54px;
-            padding: 0 25px;
-            border-radius: 13px;
-            font-weight: 800;
-            border: 0;
-            transition: 0.25s ease;
-        }
-
-        .primary-button {
-            background: #172033;
-            color: white;
-            box-shadow: 0 12px 25px rgba(23, 32, 51, 0.15);
-        }
-
-        .primary-button:hover {
-            transform: translateY(-3px);
-            background: #249ce0;
-            box-shadow: 0 15px 30px rgba(36, 156, 224, 0.22);
-        }
-
-        .secondary-button {
-            background: white;
-            border: 1px solid #dbe6ed;
-            color: #172033;
-        }
-
-        .secondary-button:hover {
-            transform: translateY(-3px);
-            border-color: #249ce0;
-        }
-
-        .hero-trust {
-            display: flex;
-            gap: 25px;
-            margin-top: 28px;
-            color: #7b8798;
-            font-size: 13px;
-            flex-wrap: wrap;
-        }
-
-        .hero-trust span::before {
-            content: "✓";
-            margin-right: 6px;
-            color: #249ce0;
-            font-weight: 900;
-        }
-
-        /* Hero visual */
-
-        .hero-card {
-            position: relative;
-            min-height: 480px;
-            border: 1px solid #dbe7ee;
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.85);
-            box-shadow: 0 30px 80px rgba(35, 70, 100, 0.12);
-            padding: 30px;
-            animation: float 5s ease-in-out infinite;
-        }
-
-        .language-card {
-            height: 100%;
-            min-height: 420px;
-            padding: 28px;
-            border-radius: 22px;
-            background: linear-gradient(145deg, #e5f6ff, #ffffff);
-        }
-
-        .language-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 55px;
-        }
-
-        .language-logo {
-            font-size: 18px;
-            font-weight: 900;
-        }
-
-        .online {
-            padding: 7px 11px;
-            border-radius: 100px;
-            background: #fff0a6;
-            color: #5c500d;
-            font-size: 12px;
-            font-weight: 800;
-        }
-
-        .ukrainian-word {
-            margin-bottom: 18px;
-            color: #172033;
-            font-size: clamp(52px, 7vw, 76px);
-            font-weight: 950;
-            letter-spacing: -4px;
-        }
-
-        .translation {
-            color: #718096;
-            font-size: 17px;
-        }
-
-        .lesson-progress {
-            margin-top: 50px;
-        }
-
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            color: #68768b;
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .progress-bar {
-            height: 9px;
-            border-radius: 100px;
-            background: #d9e7ee;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            width: 68%;
-            height: 100%;
-            border-radius: inherit;
-            background: #249ce0;
-        }
-
-        /* =========================
-           FEATURES
-        ========================= */
-
-        .features {
-            background: white;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-            margin-top: 55px;
-        }
-
-        .feature-card {
-            padding: 30px;
-            border: 1px solid #e0e8ee;
-            border-radius: 22px;
-            background: white;
-            transition: 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 45px rgba(30, 60, 90, 0.09);
-        }
-
-        .feature-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 54px;
-            height: 54px;
-            margin-bottom: 23px;
-            border-radius: 15px;
-            background: #e6f6ff;
-            color: #188fce;
-            font-size: 23px;
-        }
-
-        .feature-card h3 {
-            margin-bottom: 9px;
-            font-size: 21px;
-        }
-
-        .feature-card p {
-            color: #738094;
-            font-size: 15px;
-        }
-
-        /* =========================
-           COURSES
-        ========================= */
-
-        .courses-header {
-            display: flex;
-            align-items: end;
-            justify-content: space-between;
-            gap: 30px;
-        }
-
-        .course-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-            margin-top: 55px;
-        }
-
-        .course-card {
-            position: relative;
-            min-height: 420px;
-            padding: 32px;
-            border: 1px solid #dce7ee;
-            border-radius: 24px;
-            background: white;
-            overflow: hidden;
-            transition: 0.3s ease;
-        }
-
-        .course-card:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 25px 50px rgba(28, 61, 90, 0.1);
-        }
-
-        .course-number {
-            position: absolute;
-            top: 20px;
-            right: 24px;
-            color: #d9e9f1;
-            font-size: 70px;
-            font-weight: 950;
-            line-height: 1;
-        }
-
-        .course-level {
-            display: inline-block;
-            margin-bottom: 70px;
-            color: #249ce0;
-            font-size: 13px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .course-card h3 {
-            margin-bottom: 12px;
-            font-size: 30px;
-        }
-
-        .course-card p {
-            margin-bottom: 25px;
-            color: #738094;
-        }
-
-        .course-list {
-            list-style: none;
-        }
-
-        .course-list li {
-            position: relative;
-            margin-bottom: 11px;
-            padding-left: 24px;
-            color: #58677c;
-            font-size: 14px;
-        }
-
-        .course-list li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #249ce0;
-            font-weight: 900;
-        }
-
-        /* =========================
-           WHY US
-        ========================= */
-
-        .why {
-            background: #172033;
-            color: white;
-        }
-
-        .why .section-label {
-            color: #ffe26b;
-        }
-
-        .why .section-subtitle {
-            color: #aab6c7;
-        }
-
-        .why-grid {
-            display: grid;
-            grid-template-columns: 0.9fr 1.1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .why-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 17px;
-        }
-
-        .why-item {
-            padding: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 18px;
-            background: rgba(255, 255, 255, 0.04);
-        }
-
-        .why-item strong {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 17px;
-        }
-
-        .why-item span {
-            color: #aab6c7;
-            font-size: 13px;
-        }
-
-        /* =========================
-           TESTIMONIALS
-        ========================= */
-
-        .testimonials {
-            background: white;
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-            margin-top: 55px;
-        }
-
-        .testimonial {
-            padding: 30px;
-            border: 1px solid #e0e8ee;
-            border-radius: 22px;
-            background: #fbfdff;
-        }
-
-        .stars {
-            margin-bottom: 20px;
-            color: #f2c928;
-            letter-spacing: 3px;
-        }
-
-        .testimonial p {
-            min-height: 110px;
-            margin-bottom: 25px;
-            color: #536278;
-            font-size: 15px;
-        }
-
-        .person {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .avatar {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 43px;
-            height: 43px;
-            border-radius: 50%;
-            background: #e1f4ff;
-            color: #238dcc;
-            font-weight: 900;
-        }
-
-        .person strong {
-            display: block;
-            font-size: 14px;
-        }
-
-        .person span {
-            color: #8a96a5;
-            font-size: 12px;
-        }
-
-        /* =========================
-           PRICING
-        ========================= */
-
-        .pricing {
-            background: #f2f8fb;
-        }
-
-        .pricing-heading {
-            text-align: center;
-        }
-
-        .pricing-heading .section-subtitle {
-            margin: 0 auto;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-            margin-top: 55px;
-            align-items: stretch;
-        }
-
-        .pricing-card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            padding: 35px;
-            border: 1px solid #d9e4eb;
-            border-radius: 25px;
-            background: white;
-            min-height: 580px;
-            transition: 0.3s ease;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 25px 55px rgba(30, 65, 90, 0.1);
-        }
-
-        .pricing-card.popular {
-            border: 2px solid #249ce0;
-            box-shadow: 0 25px 70px rgba(36, 156, 224, 0.13);
-            transform: translateY(-12px);
-        }
-
-        .popular-badge {
-            position: absolute;
-            top: 22px;
-            right: 22px;
-            padding: 8px 13px;
-            border-radius: 100px;
-            background: #ffe15d;
-            color: #172033;
-            font-size: 11px;
-            font-weight: 950;
-            text-transform: uppercase;
-        }
-
-        .plan-name {
-            margin-bottom: 25px;
-            color: #718096;
-            font-size: 15px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .price {
-            display: flex;
-            align-items: baseline;
-            gap: 7px;
-            margin-bottom: 5px;
-        }
-
-        .price strong {
-            font-size: clamp(48px, 5vw, 62px);
-            line-height: 1;
-            letter-spacing: -3px;
-        }
-
-        .price span {
-            color: #7b8798;
-            font-size: 13px;
-        }
-
-        .plan-description {
-            min-height: 58px;
-            margin: 18px 0 28px;
-            color: #738094;
-            font-size: 14px;
-        }
-
-        .plan-features {
-            list-style: none;
-            flex: 1;
-        }
-
-        .plan-features li {
-            position: relative;
-            margin-bottom: 16px;
-            padding-left: 27px;
-            color: #55647a;
-            font-size: 14px;
-        }
-
-        .plan-features li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #249ce0;
-            font-size: 17px;
-            font-weight: 900;
-        }
-
-        .price-button {
-            width: 100%;
-            min-height: 56px;
-            margin-top: 25px;
-            border: 1px solid #d8e2e9;
-            border-radius: 14px;
-            background: white;
-            color: #172033;
-            font-weight: 900;
-            transition: 0.25s ease;
-        }
-
-        .price-button:hover {
-            border-color: #249ce0;
-            background: #eaf8ff;
-        }
-
-        .popular .price-button {
-            border-color: #172033;
-            background: #172033;
-            color: white;
-        }
-
-        .popular .price-button:hover {
-            border-color: #249ce0;
-            background: #249ce0;
-        }
-
-        /* =========================
-           CTA
-        ========================= */
-
-        .cta {
-            padding: 110px 0;
-        }
-
-        .cta-box {
-            position: relative;
-            padding: 75px 40px;
-            border-radius: 30px;
-            background: linear-gradient(135deg, #dff5ff, #fff3ad);
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .cta-box::before {
-            content: "UA";
-            position: absolute;
-            top: -80px;
-            left: -20px;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 220px;
-            font-weight: 950;
-        }
-
-        .cta-box h2 {
-            position: relative;
-            z-index: 1;
-            margin-bottom: 16px;
-            font-size: clamp(35px, 5vw, 55px);
-            line-height: 1;
-            letter-spacing: -2px;
-        }
-
-        .cta-box p {
-            position: relative;
-            z-index: 1;
-            max-width: 580px;
-            margin: 0 auto 30px;
-            color: #647287;
-        }
-
-        .cta-box .primary-button {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            padding: 50px 0 30px;
-            border-top: 1px solid #e2e9ee;
-            background: white;
-        }
-
-        .footer-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 30px;
-            padding-bottom: 35px;
-        }
-
-        .footer-brand p {
-            margin-top: 8px;
-            color: #8a96a5;
-            font-size: 13px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 25px;
-            color: #718096;
-            font-size: 13px;
-        }
-
-        .footer-links a:hover {
-            color: #249ce0;
-        }
-
-        .copyright {
-            padding-top: 25px;
-            border-top: 1px solid #e8edf1;
-            color: #9aa5b2;
-            font-size: 12px;
-            text-align: center;
-        }
-
-        /* =========================
-           MODAL
-        ========================= */
-
-        .modal {
-            position: fixed;
-            inset: 0;
-            z-index: 2000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: rgba(12, 21, 35, 0.55);
-            backdrop-filter: blur(8px);
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-box {
-            position: relative;
-            width: min(500px, 100%);
-            padding: 35px;
-            border-radius: 25px;
-            background: white;
-            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.2);
-            animation: modalIn 0.25s ease;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 38px;
-            height: 38px;
-            border: 0;
-            border-radius: 10px;
-            background: #f1f5f8;
-            font-size: 20px;
-        }
-
-        .modal-box h3 {
-            margin-bottom: 10px;
-            font-size: 28px;
-        }
-
-        .modal-box p {
-            margin-bottom: 25px;
-            color: #718096;
-            font-size: 14px;
-        }
-
-        .modal-form input {
-            width: 100%;
-            height: 52px;
-            margin-bottom: 12px;
-            padding: 0 16px;
-            border: 1px solid #dce5eb;
-            border-radius: 12px;
-            outline: none;
-            font-size: 14px;
-        }
-
-        .modal-form input:focus {
-            border-color: #249ce0;
-        }
-
-        .modal-form button {
-            width: 100%;
-            height: 54px;
-            margin-top: 8px;
-            border: 0;
-            border-radius: 12px;
-            background: #172033;
-            color: white;
-            font-weight: 900;
-        }
-
-        /* =========================
-           ANIMATIONS
-        ========================= */
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-8px);
-            }
-        }
-
-        @keyframes modalIn {
-            from {
-                opacity: 0;
-                transform: scale(0.94);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: 0.7s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* =========================
-           TABLET
-        ========================= */
-
-        @media (max-width: 950px) {
-            .hero-grid,
-            .why-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero {
-                min-height: auto;
-                padding: 140px 0 80px;
-            }
-
-            .hero-card {
-                max-width: 650px;
-                width: 100%;
-                margin: 0 auto;
-            }
-
-            .features-grid,
-            .course-grid,
-            .testimonial-grid,
-            .pricing-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .pricing-card.popular {
-                transform: none;
-            }
-
-            .pricing-card:last-child {
-                grid-column: 1 / -1;
-                max-width: 500px;
-                width: 100%;
-                margin: 0 auto;
-            }
-
-            .why-grid {
-                gap: 45px;
-            }
-        }
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 700px) {
-            .container {
-                width: min(100% - 28px, 1180px);
-            }
-
-            .section {
-                padding: 75px 0;
-            }
-
-            .nav {
-                height: 68px;
-            }
-
-            .nav-links {
-                position: absolute;
-                top: 68px;
-                left: 14px;
-                right: 14px;
-                display: none;
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0;
-                padding: 10px;
-                border: 1px solid #e0e8ee;
-                border-radius: 16px;
-                background: white;
-                box-shadow: 0 20px 40px rgba(20, 45, 70, 0.12);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li a {
-                display: block;
-                padding: 14px;
-            }
-
-            .nav-button {
-                text-align: center;
-            }
-
-            .menu-button {
-                display: block;
-            }
-
-            .hero {
-                padding-top: 115px;
-                padding-bottom: 65px;
-            }
-
-            .hero h1 {
-                font-size: clamp(43px, 14vw, 65px);
-                letter-spacing: -3px;
-            }
-
-            .hero-text {
-                font-size: 17px;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .hero-buttons button {
-                width: 100%;
-            }
-
-            .hero-trust {
-                gap: 10px;
-                flex-direction: column;
-            }
-
-            .hero-card {
-                min-height: 390px;
-                padding: 16px;
-                border-radius: 22px;
-            }
-
-            .language-card {
-                min-height: 350px;
-                padding: 22px;
-            }
-
-            .ukrainian-word {
-                font-size: 55px;
-            }
-
-            .features-grid,
-            .course-grid,
-            .testimonial-grid,
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .pricing-card:last-child {
-                grid-column: auto;
-                max-width: none;
-            }
-
-            .why-list {
-                grid-template-columns: 1fr;
-            }
-
-            .courses-header {
-                display: block;
-            }
-
-            .course-card {
-                min-height: 390px;
-            }
-
-            .course-level {
-                margin-bottom: 55px;
-            }
-
-            .footer-top {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .footer-links {
-                flex-wrap: wrap;
-                gap: 15px;
-            }
-
-            .cta {
-                padding: 70px 0;
-            }
-
-            .cta-box {
-                padding: 60px 22px;
-            }
-
-            .cta-box h2 {
-                font-size: 38px;
-            }
-
-            .modal-box {
-                padding: 28px 22px;
-            }
-        }
-
-        /* Small phones */
-
-        @media (max-width: 380px) {
-            .hero h1 {
-                font-size: 42px;
-            }
-
-            .hero-card {
-                min-height: 350px;
-            }
-
-            .ukrainian-word {
-                font-size: 46px;
-            }
-
-            .price strong {
-                font-size: 48px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VILNOMOV — Українська мова</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #182438;
+    background: #f7fbff;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* HEADER */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #e6edf3;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 18px 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #2998ed;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+}
+
+.nav-links a {
+    font-size: 15px;
+    font-weight: 700;
+    color: #586b82;
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    color: #2998ed;
+}
+
+/* HERO */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 105px 25px 115px;
+    text-align: center;
+
+    background:
+        radial-gradient(circle at 10% 20%, #dff3ff 0, transparent 28%),
+        radial-gradient(circle at 90% 80%, #fff4b8 0, transparent 30%),
+        #f7fbff;
+}
+
+.hero-content {
+    max-width: 950px;
+    margin: auto;
+}
+
+.badge {
+    display: inline-block;
+    background: #ffe26c;
+    color: #182438;
+    padding: 8px 17px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 900;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(46px, 8vw, 88px);
+    line-height: 0.98;
+    letter-spacing: -4px;
+    font-weight: 900;
+    margin-bottom: 28px;
+}
+
+.hero h1 span {
+    color: #2998ed;
+}
+
+.hero p {
+    max-width: 700px;
+    margin: auto;
+    color: #66788e;
+    font-size: 19px;
+}
+
+.hero-buttons {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.primary-button {
+    border: none;
+    background: #182438;
+    color: white;
+    padding: 16px 27px;
+    border-radius: 13px;
+    font-size: 16px;
+    font-weight: 800;
+    transition: 0.2s;
+}
+
+.primary-button:hover {
+    background: #2998ed;
+    transform: translateY(-2px);
+}
+
+.secondary-button {
+    border: 1px solid #d7e1ea;
+    background: white;
+    color: #182438;
+    padding: 15px 27px;
+    border-radius: 13px;
+    font-size: 16px;
+    font-weight: 800;
+    transition: 0.2s;
+}
+
+.secondary-button:hover {
+    border-color: #2998ed;
+    color: #2998ed;
+}
+
+/* SECTIONS */
+
+.section {
+    max-width: 1150px;
+    margin: auto;
+    padding: 90px 25px;
+}
+
+.section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
+
+.section-header h2 {
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 1.1;
+    margin-bottom: 15px;
+}
+
+.section-header p {
+    color: #718399;
+}
+
+/* LEVELS */
+
+.levels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.level-card {
+    background: white;
+    border: 1px solid #e4edf4;
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: 0 15px 45px rgba(39,75,105,0.06);
+    transition: 0.25s;
+}
+
+.level-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 60px rgba(39,75,105,0.12);
+}
+
+.level-number {
+    width: 46px;
+    height: 46px;
+    border-radius: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e5f5ff;
+    color: #2497e9;
+
+    font-weight: 900;
+    margin-bottom: 22px;
+}
+
+.level-card h3 {
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+.level-card p {
+    color: #708197;
+    font-size: 15px;
+}
+
+/* BENEFITS */
+
+.benefits {
+    background: #fffbea;
+}
+
+.benefits-inner {
+    max-width: 1150px;
+    margin: auto;
+    padding: 90px 25px;
+}
+
+.benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.benefit {
+    padding: 25px;
+    background: rgba(255,255,255,0.8);
+    border: 1px solid #f0e8c6;
+    border-radius: 18px;
+}
+
+.benefit-icon {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.benefit h3 {
+    margin-bottom: 8px;
+}
+
+.benefit p {
+    color: #718096;
+    font-size: 14px;
+}
+
+/* REVIEWS */
+
+.testimonials {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.testimonial {
+    background: white;
+    border: 1px solid #e5edf4;
+    border-radius: 20px;
+    padding: 27px;
+}
+
+.stars {
+    color: #f4c936;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.testimonial p {
+    color: #53677e;
+    margin-bottom: 20px;
+}
+
+.person {
+    font-weight: 900;
+}
+
+.person span {
+    display: block;
+    font-weight: normal;
+    font-size: 13px;
+    color: #8997a8;
+}
+
+/* PRICING */
+
+.pricing-section {
+    background:
+        radial-gradient(circle at 80% 20%, #e2f5ff, transparent 30%),
+        #f7fbff;
+}
+
+.pricing-card {
+    max-width: 520px;
+    margin: auto;
+
+    background: white;
+    border: 2px solid #2998ed;
+    border-radius: 27px;
+    padding: 42px;
+
+    box-shadow: 0 30px 80px rgba(31,88,130,0.13);
+    position: relative;
+}
+
+.pricing-badge {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+
+    background: #ffe26c;
+    padding: 7px 13px;
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.pricing-card h3 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #6b7c91;
+    font-size: 17px;
+    margin-bottom: 20px;
+}
+
+.price {
+    font-size: 64px;
+    line-height: 1;
+    font-weight: 900;
+    margin-bottom: 8px;
+}
+
+.price small {
+    font-size: 25px;
+}
+
+.price-description {
+    color: #75869a;
+    margin-bottom: 28px;
+}
+
+.features {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.features li {
+    margin: 14px 0;
+    color: #50647b;
+}
+
+.features li::before {
+    content: "✓";
+    color: #2998ed;
+    font-weight: 900;
+    font-size: 20px;
+    margin-right: 11px;
+}
+
+.buy-button {
+    width: 100%;
+    border: none;
+    background: #182438;
+    color: white;
+
+    padding: 18px;
+    border-radius: 14px;
+
+    font-size: 17px;
+    font-weight: 900;
+
+    transition: 0.2s;
+}
+
+.buy-button:hover {
+    background: #2998ed;
+    transform: translateY(-2px);
+}
+
+/* CTA */
+
+.cta {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 90px 25px;
+    text-align: center;
+}
+
+.cta-box {
+    background: #182438;
+    color: white;
+    padding: 60px 30px;
+    border-radius: 30px;
+}
+
+.cta-box h2 {
+    font-size: clamp(30px, 5vw, 48px);
+    margin-bottom: 15px;
+}
+
+.cta-box p {
+    color: #b8c4d1;
+    max-width: 600px;
+    margin: auto;
+}
+
+.cta-box button {
+    margin-top: 28px;
+    background: #ffe26c;
+    color: #182438;
+}
+
+.cta-box button:hover {
+    background: white;
+}
+
+/* FOOTER */
+
+footer {
+    background: #182438;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+footer strong {
+    font-size: 23px;
+}
+
+footer strong span {
+    color: #2998ed;
+}
+
+footer p {
+    margin-top: 7px;
+    color: #aebaca;
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .levels,
+    .benefit-grid,
+    .testimonials {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding-top: 75px;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .section {
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+
+    .pricing-card {
+        padding: 30px 23px;
+    }
+
+    .pricing-badge {
+        position: static;
+        display: inline-block;
+        margin-bottom: 18px;
+    }
+
+    .price {
+        font-size: 52px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .navbar {
+        padding: 15px 17px;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .nav-links {
+        gap: 13px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+    }
+
+    .hero {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-buttons button {
+        width: 100%;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- HEADER -->
 
-<header id="header">
-    <div class="container nav">
+<header>
 
-        <a href="#home" class="logo">
+    <div class="navbar">
+
+        <div class="logo">
             VILNO<span>MOV</span>
-        </a>
+        </div>
 
-        <nav>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#courses">Курси</a></li>
-                <li><a href="#why">Переваги</a></li>
-                <li><a href="#reviews">Відгуки</a></li>
-                <li><a href="#pricing">Ціни</a></li>
-                <li><a href="#pricing" class="nav-button">Почати навчання</a></li>
-            </ul>
+        <nav class="nav-links">
+            <a href="#levels">Курси</a>
+            <a href="#reviews">Відгуки</a>
+            <a href="#pricing">Ціна</a>
         </nav>
 
-        <button class="menu-button" id="menuButton" aria-label="Меню">
-            ☰
-        </button>
-
     </div>
+
 </header>
 
 
-<!-- =========================
-     HERO
-========================= -->
+<!-- HERO -->
 
-<main>
+<section class="hero">
 
-<section class="hero" id="home">
+    <div class="hero-content">
 
-    <div class="container hero-grid">
-
-        <div class="hero-content">
-
-            <div class="hero-badge">
-                <span class="hero-badge-dot"></span>
-                Онлайн-школа української мови
-            </div>
-
-            <h1>
-                Вивчай українську
-                <span>впевнено.</span>
-            </h1>
-
-            <p class="hero-text">
-                Сучасні онлайн-курси української мови для тих,
-                хто хоче говорити природно, розуміти культуру
-                та використовувати українську в реальному житті.
-            </p>
-
-            <div class="hero-buttons">
-                <button class="primary-button" onclick="openModal('Почати навчання')">
-                    Почати навчання →
-                </button>
-
-                <a href="#courses" class="secondary-button" style="display:flex;align-items:center;justify-content:center;">
-                    Переглянути курси
-                </a>
-            </div>
-
-            <div class="hero-trust">
-                <span>Навчання у власному темпі</span>
-                <span>З будь-якого пристрою</span>
-                <span>Онлайн</span>
-            </div>
-
+        <div class="badge">
+            ОНЛАЙН-КУРС УКРАЇНСЬКОЇ МОВИ
         </div>
 
+        <h1>
+            Говори українською<br>
+            <span>вільно.</span>
+        </h1>
 
-        <div class="hero-card">
-
-            <div class="language-card">
-
-                <div class="language-top">
-                    <div class="language-logo">
-                        VILNOMOV
-                    </div>
-
-                    <div class="online">
-                        ● ONLINE
-                    </div>
-                </div>
-
-                <div class="ukrainian-word">
-                    Вільно.
-                </div>
-
-                <p class="translation">
-                    Говори українською впевнено.
-                </p>
-
-                <div class="lesson-progress">
-
-                    <div class="progress-info">
-                        <span>Ваш прогрес</span>
-                        <span>68%</span>
-                    </div>
-
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     FEATURES
-========================= -->
-
-<section class="section features">
-
-    <div class="container">
-
-        <span class="section-label">Чому VILNOMOV</span>
-
-        <h2 class="section-title">
-            Українська, якою хочеться говорити.
-        </h2>
-
-        <p class="section-subtitle">
-            Ми створили навчання, яке допомагає не просто знати правила,
-            а використовувати українську у повсякденному житті.
+        <p>
+            Практичний онлайн-курс української мови,
+            який допоможе впевнено говорити, розуміти
+            українську та використовувати її щодня.
         </p>
 
-        <div class="features-grid">
-
-            <article class="feature-card reveal">
-                <div class="feature-icon">⚡</div>
-                <h3>Короткі уроки</h3>
-                <p>
-                    Зосереджуйся на одному навику за раз
-                    та навчайся без перевантаження.
-                </p>
-            </article>
-
-            <article class="feature-card reveal">
-                <div class="feature-icon">💬</div>
-                <h3>Практична українська</h3>
-                <p>
-                    Вивчай слова та фрази, які реально
-                    використовуються у розмовах.
-                </p>
-            </article>
-
-            <article class="feature-card reveal">
-                <div class="feature-icon">🎯</div>
-                <h3>Прогрес</h3>
-                <p>
-                    Відстежуй результати та бач свій
-                    прогрес від уроку до уроку.
-                </p>
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     COURSES
-========================= -->
-
-<section class="section" id="courses">
-
-    <div class="container">
-
-        <div class="courses-header">
-
-            <div>
-                <span class="section-label">Наші курси</span>
-
-                <h2 class="section-title">
-                    Обери свій рівень.
-                </h2>
-            </div>
-
-            <p class="section-subtitle">
-                Від перших слів до впевненої української.
-            </p>
-
-        </div>
-
-
-        <div class="course-grid">
-
-            <article class="course-card reveal">
-
-                <span class="course-number">01</span>
-
-                <span class="course-level">
-                    Beginner
-                </span>
-
-                <h3>Початківець</h3>
-
-                <p>
-                    Ідеальний старт для тих, хто тільки
-                    знайомиться з українською.
-                </p>
-
-                <ul class="course-list">
-                    <li>Український алфавіт</li>
-                    <li>Вимова та наголос</li>
-                    <li>Базова лексика</li>
-                    <li>Прості розмови</li>
-                </ul>
-
-            </article>
-
-
-            <article class="course-card reveal">
-
-                <span class="course-number">02</span>
-
-                <span class="course-level">
-                    Intermediate
-                </span>
-
-                <h3>Середній</h3>
-
-                <p>
-                    Розширюй словниковий запас
-                    та починай говорити вільніше.
-                </p>
-
-                <ul class="course-list">
-                    <li>Живі розмови</li>
-                    <li>Граматика в контексті</li>
-                    <li>Аудіювання</li>
-                    <li>Українська культура</li>
-                </ul>
-
-            </article>
-
-
-            <article class="course-card reveal">
-
-                <span class="course-number">03</span>
-
-                <span class="course-level">
-                    Advanced
-                </span>
-
-                <h3>Просунутий</h3>
-
-                <p>
-                    Виходь на високий рівень
-                    та говори природною українською.
-                </p>
-
-                <ul class="course-list">
-                    <li>Складна граматика</li>
-                    <li>Вільне мовлення</li>
-                    <li>Автентичні матеріали</li>
-                    <li>Професійна лексика</li>
-                </ul>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     WHY
-========================= -->
-
-<section class="section why" id="why">
-
-    <div class="container why-grid">
-
-        <div>
-            <span class="section-label">
-                VILNOMOV
-            </span>
-
-            <h2 class="section-title">
-                Більше, ніж просто граматика.
-            </h2>
-
-            <p class="section-subtitle">
-                Ми допомагаємо зрозуміти не тільки мову,
-                а й контекст, культуру та людей, які нею говорять.
-            </p>
-        </div>
-
-
-        <div class="why-list">
-
-            <div class="why-item reveal">
-                <strong>⚡ Фокусовані уроки</strong>
-                <span>Менше теорії — більше практики.</span>
-            </div>
-
-            <div class="why-item reveal">
-                <strong>💬 Розмовна практика</strong>
-                <span>Вчися говорити з першого дня.</span>
-            </div>
-
-            <div class="why-item reveal">
-                <strong>🌎 Культурний контекст</strong>
-                <span>Розумій Україну через її мову.</span>
-            </div>
-
-            <div class="why-item reveal">
-                <strong>📱 Будь-який пристрій</strong>
-                <span>Телефон, планшет чи комп'ютер.</span>
-            </div>
-
-            <div class="why-item reveal">
-                <strong>📈 Відстеження прогресу</strong>
-                <span>Бач свій результат.</span>
-            </div>
-
-            <div class="why-item reveal">
-                <strong>🎯 Чітка система</strong>
-                <span>Рухайся від рівня до рівня.</span>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     TESTIMONIALS
-========================= -->
-
-<section class="section testimonials" id="reviews">
-
-    <div class="container">
-
-        <span class="section-label">Відгуки</span>
-
-        <h2 class="section-title">
-            Учні говорять за нас.
-        </h2>
-
-        <p class="section-subtitle">
-            Реальні результати починаються з маленьких кроків.
-        </p>
-
-
-        <div class="testimonial-grid">
-
-            <article class="testimonial reveal">
-
-                <div class="stars">★★★★★</div>
-
-                <p>
-                    «Я починала практично з нуля, а через кілька
-                    місяців уже могла підтримувати просту розмову
-                    українською. Уроки дуже зрозумілі.»
-                </p>
-
-                <div class="person">
-                    <div class="avatar">A</div>
-                    <div>
-                        <strong>Anna M.</strong>
-                        <span>Student · Beginner</span>
-                    </div>
-                </div>
-
-            </article>
-
-
-            <article class="testimonial reveal">
-
-                <div class="stars">★★★★★</div>
-
-                <p>
-                    «Найбільше сподобалося, що тут багато живої мови.
-                    Я нарешті перестав боятися говорити
-                    та почав використовувати українську щодня.»
-                </p>
-
-                <div class="person">
-                    <div class="avatar">D</div>
-                    <div>
-                        <strong>Daniel K.</strong>
-                        <span>Student · Intermediate</span>
-                    </div>
-                </div>
-
-            </article>
-
-
-            <article class="testimonial reveal">
-
-                <div class="stars">★★★★★</div>
-
-                <p>
-                    «VILNOMOV допоміг мені значно покращити
-                    словниковий запас і краще зрозуміти українську
-                    культуру. Дуже зручний формат.»
-                </p>
-
-                <div class="person">
-                    <div class="avatar">S</div>
-                    <div>
-                        <strong>Sofia R.</strong>
-                        <span>Student · Advanced</span>
-                    </div>
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     PRICING
-========================= -->
-
-<section class="section pricing" id="pricing">
-
-    <div class="container">
-
-        <div class="pricing-heading">
-
-            <span class="section-label">Тарифи</span>
-
-            <h2 class="section-title" style="margin-left:auto;margin-right:auto;">
-                Обери свій формат навчання.
-            </h2>
-
-            <p class="section-subtitle">
-                Почни з комфортного для тебе рівня
-                та розвивай українську у власному темпі.
-            </p>
-
-        </div>
-
-
-        <div class="pricing-grid">
-
-            <!-- STARTER -->
-
-            <article class="pricing-card reveal">
-
-                <div class="plan-name">
-                    Starter
-                </div>
-
-                <div class="price">
-                    <strong>$39</strong>
-                    <span>/ місяць</span>
-                </div>
-
-                <p class="plan-description">
-                    Все необхідне, щоб почати
-                    вивчати українську.
-                </p>
-
-                <ul class="plan-features">
-                    <li>Курс для початківців</li>
-                    <li>30+ уроків</li>
-                    <li>Практика словникового запасу</li>
-                    <li>Відстеження прогресу</li>
-                </ul>
-
-                <button
-                    class="price-button"
-                    onclick="openModal('Starter — $39 / місяць')">
-                    Обрати Starter
-                </button>
-
-            </article>
-
-
-            <!-- COMPLETE -->
-
-            <article class="pricing-card popular reveal">
-
-                <div class="popular-badge">
-                    Найпопулярніший
-                </div>
-
-                <div class="plan-name">
-                    Complete
-                </div>
-
-                <div class="price">
-                    <strong>$119</strong>
-                    <span>/ місяць</span>
-                </div>
-
-                <p class="plan-description">
-                    Повний шлях від новачка
-                    до впевненого мовця.
-                </p>
-
-                <ul class="plan-features">
-                    <li>Усі 3 рівні курсу</li>
-                    <li>100+ уроків</li>
-                    <li>Вправи для говоріння</li>
-                    <li>Культурні уроки</li>
-                    <li>Відстеження прогресу</li>
-                </ul>
-
-                <button
-                    class="price-button"
-                    onclick="openModal('Complete — $119 / місяць')">
-                    Почати навчання
-                </button>
-
-            </article>
-
-
-            <!-- PREMIUM -->
-
-            <article class="pricing-card reveal">
-
-                <div class="plan-name">
-                    Premium
-                </div>
-
-                <div class="price">
-                    <strong>$399</strong>
-                    <span>/ місяць</span>
-                </div>
-
-                <p class="plan-description">
-                    Все в Complete плюс
-                    персоналізована підтримка.
-                </p>
-
-                <ul class="plan-features">
-                    <li>Усі рівні курсу</li>
-                    <li>Щотижнева жива практика</li>
-                    <li>Особистий відгук</li>
-                    <li>Виступи</li>
-                    <li>Пріоритетна підтримка</li>
-                </ul>
-
-                <button
-                    class="price-button"
-                    onclick="openModal('Premium — $399 / місяць')">
-                    Обрати Premium
-                </button>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     CTA
-========================= -->
-
-<section class="cta">
-
-    <div class="container">
-
-        <div class="cta-box">
-
-            <h2>
-                Твоя українська
-                починається сьогодні.
-            </h2>
-
-            <p>
-                Вивчай українську, відкривай нову культуру
-                та набувай впевненості крок за кроком.
-            </p>
-
-            <button
-                class="primary-button"
-                onclick="openModal('Почати навчання')">
-                Почати навчання →
+        <div class="hero-buttons">
+
+            <button class="primary-button"
+                    onclick="scrollToPricing()">
+                Почати навчання
+            </button>
+
+            <button class="secondary-button"
+                    onclick="scrollToLevels()">
+                Дізнатися більше
             </button>
 
         </div>
@@ -1810,255 +617,355 @@
 
 </section>
 
-</main>
+
+<!-- LEVELS -->
+
+<section class="section" id="levels">
+
+    <div class="section-header">
+
+        <h2>
+            Навчання для будь-якого рівня
+        </h2>
+
+        <p>
+            Від перших слів до впевненого спілкування
+            українською мовою.
+        </p>
+
+    </div>
+
+    <div class="levels">
+
+        <div class="level-card">
+
+            <div class="level-number">01</div>
+
+            <h3>Beginner</h3>
+
+            <p>
+                Для тих, хто тільки починає вивчати
+                українську мову. Основи, базова лексика
+                та прості фрази для спілкування.
+            </p>
+
+        </div>
+
+        <div class="level-card">
+
+            <div class="level-number">02</div>
+
+            <h3>Intermediate</h3>
+
+            <p>
+                Розширюємо словниковий запас,
+                покращуємо граматику та вчимося
+                впевнено підтримувати розмову.
+            </p>
+
+        </div>
+
+        <div class="level-card">
+
+            <div class="level-number">03</div>
+
+            <h3>Advanced</h3>
+
+            <p>
+                Для тих, хто вже говорить українською
+                та хоче зробити свою мову природною,
+                грамотною та вільною.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- BENEFITS -->
 
-<footer>
+<section class="benefits">
 
-    <div class="container">
+    <div class="benefits-inner">
 
-        <div class="footer-top">
+        <div class="section-header">
 
-            <div class="footer-brand">
+            <h2>
+                Чому VILNOMOV?
+            </h2>
 
-                <a href="#home" class="logo">
-                    VILNO<span>MOV</span>
-                </a>
+            <p>
+                Навчання без зайвої теорії —
+                більше практики та реальної української мови.
+            </p>
+
+        </div>
+
+        <div class="benefit-grid">
+
+            <div class="benefit">
+
+                <div class="benefit-icon">🎯</div>
+
+                <h3>Практичний підхід</h3>
 
                 <p>
-                    Українська. Просто. Сучасно. Вільно.
+                    Вчимо саме те, що можна використовувати
+                    у реальному спілкуванні.
                 </p>
 
             </div>
 
+            <div class="benefit">
 
-            <div class="footer-links">
-                <a href="#courses">Курси</a>
-                <a href="#reviews">Відгуки</a>
-                <a href="#pricing">Ціни</a>
-                <a href="#">Політика конфіденційності</a>
-                <a href="#">Умови</a>
+                <div class="benefit-icon">💬</div>
+
+                <h3>Більше розмовної практики</h3>
+
+                <p>
+                    Формуємо навичку говорити,
+                    а не просто запам'ятовувати правила.
+                </p>
+
+            </div>
+
+            <div class="benefit">
+
+                <div class="benefit-icon">📚</div>
+
+                <h3>Структурована програма</h3>
+
+                <p>
+                    Матеріали побудовані послідовно,
+                    щоб рухатися вперед без хаосу.
+                </p>
+
             </div>
 
         </div>
 
-        <div class="copyright">
-            © 2026 VILNOMOV. Усі права захищені.
+    </div>
+
+</section>
+
+
+<!-- REVIEWS -->
+
+<section class="section" id="reviews">
+
+    <div class="section-header">
+
+        <h2>
+            Що кажуть учні
+        </h2>
+
+        <p>
+            Враження людей, які навчаються разом з нами.
+        </p>
+
+    </div>
+
+    <div class="testimonials">
+
+        <div class="testimonial">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                Дуже сподобався формат навчання.
+                Нарешті почала впевненіше говорити
+                українською в повсякденному житті.
+            </p>
+
+            <div class="person">
+                Анна
+                <span>Учениця VILNOMOV</span>
+            </div>
+
+        </div>
+
+        <div class="testimonial">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                Матеріал пояснюється просто і зрозуміло.
+                Особливо подобається велика кількість
+                практики.
+            </p>
+
+            <div class="person">
+                Максим
+                <span>Учень VILNOMOV</span>
+            </div>
+
+        </div>
+
+        <div class="testimonial">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                Зручний онлайн-формат і дуже приємна
+                подача. Відчуваю прогрес вже під час
+                навчання.
+            </p>
+
+            <div class="person">
+                Софія
+                <span>Учениця VILNOMOV</span>
+            </div>
+
         </div>
 
     </div>
+
+</section>
+
+
+<!-- PRICING -->
+
+<section class="pricing-section" id="pricing">
+
+    <div class="section">
+
+        <div class="section-header">
+
+            <h2>
+                Почни навчання сьогодні
+            </h2>
+
+            <p>
+                Один повний тариф — усе необхідне
+                для навчання в одному курсі.
+            </p>
+
+        </div>
+
+        <div class="pricing-card">
+
+            <div class="pricing-badge">
+                ПОВНИЙ ДОСТУП
+            </div>
+
+            <h3>
+                VILNOMOV
+            </h3>
+
+            <div class="price">
+                4 990 <small>₴</small>
+            </div>
+
+            <p class="price-description">
+                Одноразова оплата за курс
+            </p>
+
+            <ul class="features">
+
+                <li>Повна програма навчання</li>
+                <li>Уроки та практичні матеріали</li>
+                <li>Рівні Beginner, Intermediate та Advanced</li>
+                <li>Практика української мови</li>
+                <li>Додаткові матеріали</li>
+                <li>Підтримка в Telegram</li>
+
+            </ul>
+
+            <button class="buy-button"
+                    onclick="goToPayment()">
+                Придбати курс — 4 990 ₴
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta">
+
+    <div class="cta-box">
+
+        <h2>
+            Готовий говорити українською?
+        </h2>
+
+        <p>
+            Приєднуйся до VILNOMOV та починай
+            свій шлях до вільного спілкування.
+        </p>
+
+        <button class="primary-button"
+                onclick="scrollToPricing()">
+            Почати навчання
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <strong>
+        VILNO<span>MOV</span>
+    </strong>
+
+    <p>
+        Українська мова. Вільне спілкування.
+    </p>
 
 </footer>
 
 
-<!-- =========================
-     MODAL
-========================= -->
-
-<div class="modal" id="modal">
-
-    <div class="modal-box">
-
-        <button
-            class="close-modal"
-            onclick="closeModal()">
-            ×
-        </button>
-
-        <h3>
-            Почати навчання
-        </h3>
-
-        <p id="modalText">
-            Залиш свої дані, і ми зв'яжемося з тобою.
-        </p>
-
-        <form class="modal-form" id="courseForm">
-
-            <input
-                type="text"
-                placeholder="Ваше ім'я"
-                required>
-
-            <input
-                type="email"
-                placeholder="Ваш email"
-                required>
-
-            <button type="submit">
-                Надіслати заявку →
-            </button>
-
-        </form>
-
-    </div>
-
-</div>
-
-
 <script>
-    /* =========================
-       HEADER SCROLL
-    ========================= */
 
-    const header = document.getElementById("header");
+/* ПРОКРУТКА К ТАРИФУ */
 
-    window.addEventListener("scroll", () => {
+function scrollToPricing() {
 
-        if (window.scrollY > 20) {
-            header.classList.add("scrolled");
-        } else {
-            header.classList.remove("scrolled");
-        }
-
+    document.getElementById("pricing").scrollIntoView({
+        behavior: "smooth"
     });
 
+}
 
-    /* =========================
-       MOBILE MENU
-    ========================= */
 
-    const menuButton = document.getElementById("menuButton");
-    const navLinks = document.getElementById("navLinks");
+/* ПРОКРУТКА К КУРСАМ */
 
-    menuButton.addEventListener("click", () => {
+function scrollToLevels() {
 
-        navLinks.classList.toggle("active");
-
-        if (navLinks.classList.contains("active")) {
-            menuButton.textContent = "×";
-        } else {
-            menuButton.textContent = "☰";
-        }
-
+    document.getElementById("levels").scrollIntoView({
+        behavior: "smooth"
     });
 
-
-    /* Close mobile menu after clicking */
-
-    document.querySelectorAll(".nav-links a").forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            navLinks.classList.remove("active");
-            menuButton.textContent = "☰";
-
-        });
-
-    });
+}
 
 
-    /* =========================
-       SCROLL ANIMATIONS
-    ========================= */
+/* ПЕРЕХОД К ОПЛАТЕ WAYFORPAY */
 
-    const revealElements =
-        document.querySelectorAll(".reveal");
+function goToPayment() {
 
-    const observer = new IntersectionObserver(
-        (entries) => {
+    window.location.href =
+        "https://secure.wayforpay.com/button/b0926264a1f88";
 
-            entries.forEach(entry => {
+}
 
-                if (entry.isIntersecting) {
-
-                    entry.target.classList.add("visible");
-
-                    observer.unobserve(entry.target);
-
-                }
-
-            });
-
-        },
-        {
-            threshold: 0.12
-        }
-    );
-
-
-    revealElements.forEach(element => {
-        observer.observe(element);
-    });
-
-
-    /* =========================
-       MODAL
-    ========================= */
-
-    const modal = document.getElementById("modal");
-    const modalText = document.getElementById("modalText");
-
-    function openModal(plan) {
-
-        modalText.textContent =
-            "Обраний варіант: " +
-            plan +
-            ". Залиш свої дані, і ми зв'яжемося з тобою.";
-
-        modal.classList.add("active");
-
-        document.body.style.overflow = "hidden";
-    }
-
-
-    function closeModal() {
-
-        modal.classList.remove("active");
-
-        document.body.style.overflow = "";
-
-    }
-
-
-    /* Close by clicking outside */
-
-    modal.addEventListener("click", (event) => {
-
-        if (event.target === modal) {
-            closeModal();
-        }
-
-    });
-
-
-    /* Close with Escape */
-
-    document.addEventListener("keydown", (event) => {
-
-        if (event.key === "Escape") {
-            closeModal();
-        }
-
-    });
-
-
-    /* =========================
-       FORM
-    ========================= */
-
-    const courseForm =
-        document.getElementById("courseForm");
-
-    courseForm.addEventListener("submit", (event) => {
-
-        event.preventDefault();
-
-        alert(
-            "Дякуємо! Ваша заявка прийнята. " +
-            "Це демонстраційна версія сайту."
-        );
-
-        courseForm.reset();
-
-        closeModal();
-
-    });
 </script>
 
 </body>
 </html>
+```

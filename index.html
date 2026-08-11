@@ -1,13 +1,13 @@
-```html
 <!DOCTYPE html>
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>VILNOMOV — Українська мова</title>
+<title>VILNOMOV — Українська мова онлайн</title>
 
 <style>
+
 * {
     margin: 0;
     padding: 0;
@@ -20,952 +20,1194 @@ html {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    color: #182438;
-    background: #f7fbff;
-    line-height: 1.6;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255,220,90,.18), transparent 28%),
+        radial-gradient(circle at 85% 25%, rgba(30,150,255,.14), transparent 30%),
+        #f5faff;
+    color: #17243a;
+    overflow-x: hidden;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-button {
-    font-family: inherit;
-    cursor: pointer;
-}
-
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(255,255,255,0.94);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid #e6edf3;
-}
-
-.navbar {
-    max-width: 1200px;
-    margin: auto;
-    padding: 18px 25px;
-
+    width: 100%;
+    padding: 22px 7%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 50;
 }
 
 .logo {
-    font-size: 27px;
+    font-size: 25px;
     font-weight: 900;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
-.logo span {
-    color: #2998ed;
+.logo-dark {
+    color: #17243a;
 }
 
-.nav-links {
+.logo-blue {
+    color: #168cff;
+}
+
+nav {
     display: flex;
     gap: 28px;
-    align-items: center;
 }
 
-.nav-links a {
-    font-size: 15px;
+nav a {
+    color: #31445f;
+    text-decoration: none;
     font-weight: 700;
-    color: #586b82;
-    transition: 0.2s;
+    font-size: 15px;
+    transition: .25s;
 }
 
-.nav-links a:hover {
-    color: #2998ed;
+nav a:hover {
+    color: #168cff;
 }
 
-/* HERO */
+
+/* =========================
+   HERO
+========================= */
 
 .hero {
+    min-height: 720px;
+    padding: 150px 7% 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     position: relative;
     overflow: hidden;
-    padding: 105px 25px 115px;
-    text-align: center;
-
-    background:
-        radial-gradient(circle at 10% 20%, #dff3ff 0, transparent 28%),
-        radial-gradient(circle at 90% 80%, #fff4b8 0, transparent 30%),
-        #f7fbff;
 }
 
 .hero-content {
-    max-width: 950px;
-    margin: auto;
+    max-width: 900px;
+    position: relative;
+    z-index: 5;
 }
+
+
+/* UA + описание */
 
 .badge {
-    display: inline-block;
-    background: #ffe26c;
-    color: #182438;
-    padding: 8px 17px;
-    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #ffdb55;
+    color: #17243a;
+    padding: 8px 18px 8px 10px;
+    border-radius: 50px;
+    font-weight: 900;
     font-size: 13px;
-    font-weight: 900;
-    margin-bottom: 25px;
-}
-
-.hero h1 {
-    font-size: clamp(46px, 8vw, 88px);
-    line-height: 0.98;
-    letter-spacing: -4px;
-    font-weight: 900;
     margin-bottom: 28px;
 }
 
-.hero h1 span {
-    color: #2998ed;
-}
-
-.hero p {
-    max-width: 700px;
-    margin: auto;
-    color: #66788e;
-    font-size: 19px;
-}
-
-.hero-buttons {
-    margin-top: 35px;
-    display: flex;
-    justify-content: center;
-    gap: 14px;
-    flex-wrap: wrap;
-}
-
-.primary-button {
-    border: none;
-    background: #182438;
-    color: white;
-    padding: 16px 27px;
-    border-radius: 13px;
-    font-size: 16px;
-    font-weight: 800;
-    transition: 0.2s;
-}
-
-.primary-button:hover {
-    background: #2998ed;
-    transform: translateY(-2px);
-}
-
-.secondary-button {
-    border: 1px solid #d7e1ea;
-    background: white;
-    color: #182438;
-    padding: 15px 27px;
-    border-radius: 13px;
-    font-size: 16px;
-    font-weight: 800;
-    transition: 0.2s;
-}
-
-.secondary-button:hover {
-    border-color: #2998ed;
-    color: #2998ed;
-}
-
-/* SECTIONS */
-
-.section {
-    max-width: 1150px;
-    margin: auto;
-    padding: 90px 25px;
-}
-
-.section-header {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 50px;
-}
-
-.section-header h2 {
-    font-size: clamp(32px, 5vw, 48px);
-    line-height: 1.1;
-    margin-bottom: 15px;
-}
-
-.section-header p {
-    color: #718399;
-}
-
-/* LEVELS */
-
-.levels {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-}
-
-.level-card {
-    background: white;
-    border: 1px solid #e4edf4;
-    border-radius: 22px;
-    padding: 30px;
-    box-shadow: 0 15px 45px rgba(39,75,105,0.06);
-    transition: 0.25s;
-}
-
-.level-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 25px 60px rgba(39,75,105,0.12);
-}
-
-.level-number {
-    width: 46px;
-    height: 46px;
-    border-radius: 13px;
-
+.badge-ua {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #17243a;
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
 
-    background: #e5f5ff;
-    color: #2497e9;
+.badge-text {
+    white-space: nowrap;
+}
 
+
+/* главный заголовок */
+
+.hero h1 {
+    font-size: clamp(52px, 8vw, 92px);
+    line-height: .9;
+    letter-spacing: -5px;
+    margin-bottom: 30px;
     font-weight: 900;
-    margin-bottom: 22px;
 }
 
-.level-card h3 {
-    font-size: 23px;
-    margin-bottom: 10px;
+.hero-line-dark {
+    color: #17243a;
 }
 
-.level-card p {
-    color: #708197;
-    font-size: 15px;
+.hero-line-blue {
+    color: #168cff;
 }
 
-/* BENEFITS */
-
-.benefits {
-    background: #fffbea;
+.hero p {
+    max-width: 650px;
+    margin: 0 auto 35px;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #60718b;
 }
 
-.benefits-inner {
-    max-width: 1150px;
-    margin: auto;
-    padding: 90px 25px;
+.main-button {
+    display: inline-block;
+    border: none;
+    background: #17243a;
+    color: white;
+    padding: 18px 34px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .25s;
+    box-shadow: 0 15px 35px rgba(23,36,58,.18);
 }
 
-.benefit-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+.main-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(23,36,58,.25);
 }
 
-.benefit {
-    padding: 25px;
-    background: rgba(255,255,255,0.8);
-    border: 1px solid #f0e8c6;
-    border-radius: 18px;
+
+/* декоративные слова HERO */
+
+.hero-decoration {
+    position: absolute;
+    font-weight: 900;
+    pointer-events: none;
+    user-select: none;
+    opacity: .10;
 }
 
-.benefit-icon {
+.dec1 {
+    left: 4%;
+    top: 25%;
+    font-size: 42px;
+    color: #168cff;
+    transform: rotate(-15deg);
+}
+
+.dec2 {
+    right: 4%;
+    top: 35%;
+    font-size: 34px;
+    color: #17243a;
+    transform: rotate(14deg);
+}
+
+.dec3 {
+    left: 10%;
+    bottom: 18%;
+    font-size: 25px;
+    color: #ffca28;
+    transform: rotate(8deg);
+}
+
+.dec4 {
+    right: 11%;
+    bottom: 20%;
     font-size: 30px;
-    margin-bottom: 12px;
+    color: #168cff;
+    transform: rotate(-10deg);
 }
 
-.benefit h3 {
-    margin-bottom: 8px;
-}
 
-.benefit p {
-    color: #718096;
-    font-size: 14px;
-}
+/* =========================
+   ABOUT
+========================= */
 
-/* REVIEWS */
-
-.testimonials {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.testimonial {
+.about {
+    padding: 80px 7%;
     background: white;
-    border: 1px solid #e5edf4;
-    border-radius: 20px;
-    padding: 27px;
+    text-align: center;
 }
 
-.stars {
-    color: #f4c936;
+.section-title {
+    font-size: clamp(34px,5vw,54px);
+    margin-bottom: 18px;
+    color: #17243a;
+}
+
+.section-subtitle {
+    max-width: 650px;
+    margin: 0 auto;
+    color: #718097;
     font-size: 18px;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   PRICING
+========================= */
+
+.pricing {
+    min-height: 750px;
+    padding: 100px 5%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pricing-title {
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.pricing-title h2 {
+    font-size: clamp(35px,5vw,55px);
     margin-bottom: 15px;
 }
 
-.testimonial p {
-    color: #53677e;
-    margin-bottom: 20px;
+.pricing-title p {
+    color: #718097;
+    font-size: 17px;
 }
 
-.person {
+.tariff-area {
+    position: relative;
+    width: min(100%, 1000px);
+    margin-top: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 570px;
+}
+
+
+/* =========================
+   ДЕКОРАТИВНЫЕ СЛОВА
+========================= */
+
+.word {
+    position: absolute;
+    z-index: 1;
+    font-weight: 900;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.word-blue {
+    color: rgba(22,140,255,.20);
+}
+
+.word-yellow {
+    color: rgba(255,195,30,.28);
+}
+
+.word-dark {
+    color: rgba(23,36,58,.13);
+}
+
+
+/* расположение */
+
+.word1 {
+    left: 5%;
+    top: 6%;
+    font-size: 25px;
+    transform: rotate(-13deg);
+}
+
+.word2 {
+    left: 1%;
+    top: 31%;
+    font-size: 19px;
+    transform: rotate(9deg);
+}
+
+.word3 {
+    left: 7%;
+    bottom: 10%;
+    font-size: 22px;
+    transform: rotate(-8deg);
+}
+
+.word4 {
+    right: 4%;
+    top: 10%;
+    font-size: 22px;
+    transform: rotate(14deg);
+}
+
+.word5 {
+    right: 0;
+    top: 42%;
+    font-size: 27px;
+    transform: rotate(-10deg);
+}
+
+.word6 {
+    right: 8%;
+    bottom: 9%;
+    font-size: 19px;
+    transform: rotate(8deg);
+}
+
+.word7 {
+    left: 20%;
+    top: 1%;
+    font-size: 16px;
+    transform: rotate(-5deg);
+}
+
+.word8 {
+    right: 20%;
+    bottom: 1%;
+    font-size: 16px;
+    transform: rotate(7deg);
+}
+
+.word9 {
+    left: 13%;
+    top: 55%;
+    font-size: 15px;
+    transform: rotate(-18deg);
+}
+
+.word10 {
+    right: 14%;
+    top: 68%;
+    font-size: 17px;
+    transform: rotate(16deg);
+}
+
+
+/* =========================
+   КАРТОЧКА ТАРИФА
+========================= */
+
+.tariff-card {
+    width: 100%;
+    max-width: 520px;
+    background: rgba(255,255,255,.98);
+    border: 2px solid #2497ff;
+    border-radius: 28px;
+    padding: 29px 34px;
+    position: relative;
+    z-index: 5;
+
+    box-shadow:
+        0 25px 70px rgba(22,140,255,.12),
+        0 10px 30px rgba(23,36,58,.06);
+}
+
+
+/* верх */
+
+.tariff-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.tariff-logo {
+    font-size: 19px;
+    letter-spacing: 1.5px;
     font-weight: 900;
 }
 
-.person span {
-    display: block;
-    font-weight: normal;
-    font-size: 13px;
-    color: #8997a8;
+.tariff-logo-dark {
+    color: #17243a;
 }
 
-/* PRICING */
-
-.pricing-section {
-    background:
-        radial-gradient(circle at 80% 20%, #e2f5ff, transparent 30%),
-        #f7fbff;
+.tariff-logo-blue {
+    color: #168cff;
 }
 
-.pricing-card {
-    max-width: 520px;
-    margin: auto;
-
-    background: white;
-    border: 2px solid #2998ed;
-    border-radius: 27px;
-    padding: 42px;
-
-    box-shadow: 0 30px 80px rgba(31,88,130,0.13);
-    position: relative;
-}
-
-.pricing-badge {
-    position: absolute;
-    right: 25px;
-    top: 25px;
-
-    background: #ffe26c;
-    padding: 7px 13px;
-    border-radius: 20px;
-
+.tariff-label {
+    background: #ffdb55;
+    padding: 8px 14px;
+    border-radius: 30px;
     font-size: 12px;
     font-weight: 900;
 }
 
-.pricing-card h3 {
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #6b7c91;
-    font-size: 17px;
-    margin-bottom: 20px;
-}
+
+/* цена */
 
 .price {
-    font-size: 64px;
-    line-height: 1;
-    font-weight: 900;
-    margin-bottom: 8px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 3px;
 }
 
-.price small {
-    font-size: 25px;
+.price-number {
+    font-size: clamp(52px,7vw,68px);
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -3px;
+    color: #17243a;
+}
+
+.currency {
+    font-size: 24px;
+    font-weight: 700;
 }
 
 .price-description {
-    color: #75869a;
-    margin-bottom: 28px;
+    color: #718097;
+    font-size: 15px;
+    margin-bottom: 23px;
 }
 
-.features {
+
+/* список */
+
+.tariff-list {
     list-style: none;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
-.features li {
-    margin: 14px 0;
-    color: #50647b;
+.tariff-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 13px 0;
+    color: #40546f;
+    font-size: 16px;
+    line-height: 1.3;
 }
 
-.features li::before {
-    content: "✓";
-    color: #2998ed;
+.check {
+    color: #168cff;
+    font-size: 21px;
     font-weight: 900;
-    font-size: 20px;
-    margin-right: 11px;
 }
 
-.buy-button {
+
+/* кнопка */
+
+.pay-button {
+    display: block;
     width: 100%;
     border: none;
-    background: #182438;
+    border-radius: 15px;
+    background: #17243a;
     color: white;
-
-    padding: 18px;
-    border-radius: 14px;
-
-    font-size: 17px;
+    text-align: center;
+    padding: 17px 20px;
+    font-size: 16px;
     font-weight: 900;
-
-    transition: 0.2s;
+    text-decoration: none;
+    cursor: pointer;
+    transition: .25s;
 }
 
-.buy-button:hover {
-    background: #2998ed;
-    transform: translateY(-2px);
+.pay-button:hover {
+    background: #168cff;
+    transform: translateY(-3px);
 }
 
-/* CTA */
 
-.cta {
-    max-width: 950px;
-    margin: 0 auto;
-    padding: 90px 25px;
+/* =========================
+   ОПЛАТА
+========================= */
+
+.payment-info {
+    max-width: 750px;
+    margin: 60px auto 0;
+    text-align: center;
+    padding: 35px;
+    background: white;
+    border: 1px solid #e4edf7;
+    border-radius: 25px;
+    box-shadow: 0 15px 45px rgba(23,36,58,.06);
+}
+
+.payment-info h3 {
+    font-size: 25px;
+    margin-bottom: 12px;
+}
+
+.payment-info p {
+    color: #718097;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   ОТЗЫВЫ
+========================= */
+
+.testimonials {
+    padding: 100px 7%;
+    background: white;
     text-align: center;
 }
 
-.cta-box {
-    background: #182438;
-    color: white;
-    padding: 60px 30px;
-    border-radius: 30px;
+.reviews {
+    max-width: 1050px;
+    margin: 50px auto 0;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 22px;
 }
 
-.cta-box h2 {
-    font-size: clamp(30px, 5vw, 48px);
+.review {
+    text-align: left;
+    padding: 28px;
+    border-radius: 22px;
+    background: #f7fbff;
+    border: 1px solid #e7eef6;
+}
+
+.stars {
+    color: #ffcb35;
+    font-size: 19px;
     margin-bottom: 15px;
 }
 
-.cta-box p {
-    color: #b8c4d1;
+.review p {
+    color: #52657f;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.review strong {
+    color: #17243a;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.final-cta {
+    padding: 100px 7%;
+    text-align: center;
+    background: #17243a;
+    color: white;
+}
+
+.final-cta h2 {
+    font-size: clamp(35px,5vw,60px);
+    margin-bottom: 20px;
+}
+
+.final-cta p {
+    color: #b8c4d5;
     max-width: 600px;
-    margin: auto;
+    margin: 0 auto 30px;
+    line-height: 1.6;
 }
 
-.cta-box button {
-    margin-top: 28px;
-    background: #ffe26c;
-    color: #182438;
+.final-cta .main-button {
+    background: #ffdb55;
+    color: #17243a;
 }
 
-.cta-box button:hover {
-    background: white;
-}
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer {
-    background: #182438;
-    color: white;
+    background: #111b2b;
+    color: #8f9caf;
     text-align: center;
-    padding: 40px 20px;
+    padding: 25px;
+    font-size: 14px;
 }
 
-footer strong {
-    font-size: 23px;
-}
 
-footer strong span {
-    color: #2998ed;
-}
+/* =========================
+   АДАПТИВ
+========================= */
 
-footer p {
-    margin-top: 7px;
-    color: #aebaca;
-}
+@media (max-width: 900px) {
 
-/* MOBILE */
-
-@media (max-width: 800px) {
-
-    .levels,
-    .benefit-grid,
-    .testimonials {
+    .reviews {
         grid-template-columns: 1fr;
+        max-width: 600px;
     }
 
-    .hero {
-        padding-top: 75px;
+    .tariff-area {
+        width: 100%;
     }
 
-    .hero h1 {
-        letter-spacing: -2px;
+    .word {
+        opacity: .65;
     }
 
-    .section {
-        padding-top: 70px;
-        padding-bottom: 70px;
+    .word1 {
+        left: 1%;
     }
 
-    .pricing-card {
-        padding: 30px 23px;
-    }
-
-    .pricing-badge {
-        position: static;
-        display: inline-block;
-        margin-bottom: 18px;
-    }
-
-    .price {
-        font-size: 52px;
+    .word4 {
+        right: 1%;
     }
 }
 
-@media (max-width: 500px) {
 
-    .navbar {
-        padding: 15px 17px;
+@media (max-width: 650px) {
+
+    header {
+        padding: 18px 5%;
     }
 
-    .logo {
-        font-size: 23px;
-    }
-
-    .nav-links {
-        gap: 13px;
-    }
-
-    .nav-links a {
-        font-size: 13px;
+    nav {
+        display: none;
     }
 
     .hero {
-        padding-left: 18px;
-        padding-right: 18px;
+        min-height: 650px;
+        padding: 130px 5% 70px;
     }
 
     .hero h1 {
-        font-size: 48px;
+        font-size: clamp(47px,14vw,70px);
+        letter-spacing: -3px;
     }
 
     .hero p {
+        font-size: 17px;
+    }
+
+    .badge {
+        font-size: 11px;
+    }
+
+    .about,
+    .pricing,
+    .testimonials {
+        padding: 70px 5%;
+    }
+
+    .tariff-area {
+        margin-top: 30px;
+        min-height: 520px;
+    }
+
+    .tariff-card {
+        max-width: 430px;
+        padding: 25px 23px;
+        border-radius: 24px;
+    }
+
+    .price-number {
+        font-size: 53px;
+    }
+
+    .tariff-list li {
+        font-size: 15px;
+        margin: 12px 0;
+    }
+
+    .word {
+        font-size: 15px !important;
+        opacity: .5;
+    }
+
+    .word1 {
+        left: -2%;
+    }
+
+    .word2 {
+        left: -3%;
+    }
+
+    .word3 {
+        left: 0;
+    }
+
+    .word4 {
+        right: -2%;
+    }
+
+    .word5 {
+        right: -4%;
+    }
+
+    .word6 {
+        right: 0;
+    }
+
+    .word9,
+    .word10 {
+        display: none;
+    }
+}
+
+
+@media (max-width: 430px) {
+
+    .hero h1 {
+        font-size: 46px;
+    }
+
+    .badge-text {
+        font-size: 10px;
+    }
+
+    .badge-ua {
+        width: 34px;
+        height: 34px;
+        font-size: 11px;
+    }
+
+    .tariff-card {
+        padding: 22px 19px;
+    }
+
+    .tariff-logo {
         font-size: 16px;
     }
 
-    .hero-buttons {
-        flex-direction: column;
+    .tariff-label {
+        font-size: 10px;
+        padding: 7px 10px;
     }
 
-    .hero-buttons button {
-        width: 100%;
+    .price-number {
+        font-size: 46px;
+    }
+
+    .currency {
+        font-size: 19px;
+    }
+
+    .tariff-list li {
+        font-size: 14px;
+    }
+
+    .pay-button {
+        font-size: 15px;
+        padding: 16px;
     }
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- HEADER -->
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
 
-    <div class="navbar">
-
-        <div class="logo">
-            VILNO<span>MOV</span>
-        </div>
-
-        <nav class="nav-links">
-            <a href="#levels">Курси</a>
-            <a href="#reviews">Відгуки</a>
-            <a href="#pricing">Ціна</a>
-        </nav>
-
+    <div class="logo">
+        <span class="logo-dark">VILNO</span><span class="logo-blue">MOV</span>
     </div>
+
+    <nav>
+        <a href="#pricing">Навчання</a>
+        <a href="#reviews">Відгуки</a>
+    </nav>
 
 </header>
 
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero">
+
+    <div class="hero-decoration dec1">
+        говори
+    </div>
+
+    <div class="hero-decoration dec2">
+        українською
+    </div>
+
+    <div class="hero-decoration dec3">
+        впевнено
+    </div>
+
+    <div class="hero-decoration dec4">
+        навчайся
+    </div>
+
 
     <div class="hero-content">
 
         <div class="badge">
-            ОНЛАЙН-КУРС УКРАЇНСЬКОЇ МОВИ
+
+            <div class="badge-ua">
+                UA
+            </div>
+
+            <div class="badge-text">
+                УКРАЇНСЬКА МОВА ОНЛАЙН
+            </div>
+
         </div>
+
 
         <h1>
-            Говори українською<br>
-            <span>вільно.</span>
+            <span class="hero-line-dark">Говори</span><br>
+            <span class="hero-line-blue">українською</span><br>
+            <span class="hero-line-dark">впевнено.</span>
         </h1>
 
+
         <p>
-            Практичний онлайн-курс української мови,
-            який допоможе впевнено говорити, розуміти
-            українську та використовувати її щодня.
+            Практичний онлайн-курс української мови
+            для тих, хто хоче впевнено говорити
+            та використовувати українську щодня.
         </p>
 
-        <div class="hero-buttons">
 
-            <button class="primary-button"
-                    onclick="scrollToPricing()">
-                Почати навчання
-            </button>
-
-            <button class="secondary-button"
-                    onclick="scrollToLevels()">
-                Дізнатися більше
-            </button>
-
-        </div>
+        <a href="#pricing" class="main-button">
+            Почати навчання
+        </a>
 
     </div>
 
 </section>
 
 
-<!-- LEVELS -->
 
-<section class="section" id="levels">
+<!-- =========================
+     PRICING
+========================= -->
 
-    <div class="section-header">
+<section class="pricing" id="pricing">
+
+
+    <div class="pricing-title">
 
         <h2>
-            Навчання для будь-якого рівня
+            Обери свій шлях
         </h2>
 
         <p>
-            Від перших слів до впевненого спілкування
-            українською мовою.
+            Один курс — повний доступ до навчання.
         </p>
 
     </div>
 
-    <div class="levels">
 
-        <div class="level-card">
-
-            <div class="level-number">01</div>
-
-            <h3>Beginner</h3>
-
-            <p>
-                Для тих, хто тільки починає вивчати
-                українську мову. Основи, базова лексика
-                та прості фрази для спілкування.
-            </p>
-
-        </div>
-
-        <div class="level-card">
-
-            <div class="level-number">02</div>
-
-            <h3>Intermediate</h3>
-
-            <p>
-                Розширюємо словниковий запас,
-                покращуємо граматику та вчимося
-                впевнено підтримувати розмову.
-            </p>
-
-        </div>
-
-        <div class="level-card">
-
-            <div class="level-number">03</div>
-
-            <h3>Advanced</h3>
-
-            <p>
-                Для тих, хто вже говорить українською
-                та хоче зробити свою мову природною,
-                грамотною та вільною.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
+    <div class="tariff-area">
 
 
-<!-- BENEFITS -->
+        <!-- декоративные слова -->
 
-<section class="benefits">
+        <span class="word word1 word-blue">
+            говори
+        </span>
 
-    <div class="benefits-inner">
+        <span class="word word2 word-yellow">
+            вільно
+        </span>
 
-        <div class="section-header">
+        <span class="word word3 word-blue">
+            українською
+        </span>
 
-            <h2>
-                Чому VILNOMOV?
-            </h2>
+        <span class="word word4 word-yellow">
+            навчайся
+        </span>
 
-            <p>
-                Навчання без зайвої теорії —
-                більше практики та реальної української мови.
-            </p>
+        <span class="word word5 word-blue">
+            практикуй
+        </span>
 
-        </div>
+        <span class="word word6 word-dark">
+            розмовляй
+        </span>
 
-        <div class="benefit-grid">
+        <span class="word word7 word-yellow">
+            мова
+        </span>
 
-            <div class="benefit">
+        <span class="word word8 word-blue">
+            вперед
+        </span>
 
-                <div class="benefit-icon">🎯</div>
+        <span class="word word9 word-dark">
+            говори
+        </span>
 
-                <h3>Практичний підхід</h3>
+        <span class="word word10 word-yellow">
+            впевнено
+        </span>
 
-                <p>
-                    Вчимо саме те, що можна використовувати
-                    у реальному спілкуванні.
-                </p>
+
+
+        <!-- КАРТОЧКА ТАРИФА -->
+
+        <div class="tariff-card">
+
+
+            <div class="tariff-top">
+
+                <div class="tariff-logo">
+                    <span class="tariff-logo-dark">VILNO</span><span class="tariff-logo-blue">MOV</span>
+                </div>
+
+                <div class="tariff-label">
+                    ПОВНИЙ ДОСТУП
+                </div>
 
             </div>
 
-            <div class="benefit">
 
-                <div class="benefit-icon">💬</div>
-
-                <h3>Більше розмовної практики</h3>
-
-                <p>
-                    Формуємо навичку говорити,
-                    а не просто запам'ятовувати правила.
-                </p>
-
-            </div>
-
-            <div class="benefit">
-
-                <div class="benefit-icon">📚</div>
-
-                <h3>Структурована програма</h3>
-
-                <p>
-                    Матеріали побудовані послідовно,
-                    щоб рухатися вперед без хаосу.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- REVIEWS -->
-
-<section class="section" id="reviews">
-
-    <div class="section-header">
-
-        <h2>
-            Що кажуть учні
-        </h2>
-
-        <p>
-            Враження людей, які навчаються разом з нами.
-        </p>
-
-    </div>
-
-    <div class="testimonials">
-
-        <div class="testimonial">
-
-            <div class="stars">
-                ★★★★★
-            </div>
-
-            <p>
-                Дуже сподобався формат навчання.
-                Нарешті почала впевненіше говорити
-                українською в повсякденному житті.
-            </p>
-
-            <div class="person">
-                Анна
-                <span>Учениця VILNOMOV</span>
-            </div>
-
-        </div>
-
-        <div class="testimonial">
-
-            <div class="stars">
-                ★★★★★
-            </div>
-
-            <p>
-                Матеріал пояснюється просто і зрозуміло.
-                Особливо подобається велика кількість
-                практики.
-            </p>
-
-            <div class="person">
-                Максим
-                <span>Учень VILNOMOV</span>
-            </div>
-
-        </div>
-
-        <div class="testimonial">
-
-            <div class="stars">
-                ★★★★★
-            </div>
-
-            <p>
-                Зручний онлайн-формат і дуже приємна
-                подача. Відчуваю прогрес вже під час
-                навчання.
-            </p>
-
-            <div class="person">
-                Софія
-                <span>Учениця VILNOMOV</span>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- PRICING -->
-
-<section class="pricing-section" id="pricing">
-
-    <div class="section">
-
-        <div class="section-header">
-
-            <h2>
-                Почни навчання сьогодні
-            </h2>
-
-            <p>
-                Один повний тариф — усе необхідне
-                для навчання в одному курсі.
-            </p>
-
-        </div>
-
-        <div class="pricing-card">
-
-            <div class="pricing-badge">
-                ПОВНИЙ ДОСТУП
-            </div>
-
-            <h3>
-                VILNOMOV
-            </h3>
 
             <div class="price">
-                4 990 <small>₴</small>
+
+                <div class="price-number">
+                    4 990
+                </div>
+
+                <div class="currency">
+                    ₴
+                </div>
+
             </div>
 
-            <p class="price-description">
+
+            <div class="price-description">
                 Одноразова оплата за курс
-            </p>
+            </div>
 
-            <ul class="features">
 
-                <li>Повна програма навчання</li>
-                <li>Уроки та практичні матеріали</li>
-                <li>Рівні Beginner, Intermediate та Advanced</li>
-                <li>Практика української мови</li>
-                <li>Додаткові матеріали</li>
-                <li>Підтримка в Telegram</li>
+
+            <ul class="tariff-list">
+
+                <li>
+                    <span class="check">✓</span>
+                    Уроки та практичні матеріали
+                </li>
+
+                <li>
+                    <span class="check">✓</span>
+                    Рівні Beginner, Intermediate та Advanced
+                </li>
+
+                <li>
+                    <span class="check">✓</span>
+                    Практика української мови
+                </li>
+
+                <li>
+                    <span class="check">✓</span>
+                    Додаткові матеріали
+                </li>
+
+                <li>
+                    <span class="check">✓</span>
+                    Підтримка в Telegram
+                </li>
 
             </ul>
 
-            <button class="buy-button"
-                    onclick="goToPayment()">
+
+
+            <!-- ОПЛАТА WAYFORPAY -->
+
+            <a
+                class="pay-button"
+                href="https://secure.wayforpay.com/button/b0926264a1f88"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
                 Придбати курс — 4 990 ₴
-            </button>
+            </a>
+
 
         </div>
 
     </div>
 
-</section>
 
 
-<!-- CTA -->
+    <!-- информация после тарифа -->
 
-<section class="cta">
+    <div class="payment-info">
 
-    <div class="cta-box">
-
-        <h2>
-            Готовий говорити українською?
-        </h2>
+        <h3>
+            Як відбувається оплата?
+        </h3>
 
         <p>
-            Приєднуйся до VILNOMOV та починай
-            свій шлях до вільного спілкування.
+            Натисни «Придбати курс», після чого відкриється
+            захищена сторінка оплати WayForPay.
+            Після успішної оплати ти зможеш отримати
+            подальші інструкції щодо доступу до курсу.
         </p>
-
-        <button class="primary-button"
-                onclick="scrollToPricing()">
-            Почати навчання
-        </button>
 
     </div>
 
 </section>
 
 
-<!-- FOOTER -->
 
-<footer>
+<!-- =========================
+     REVIEWS
+========================= -->
 
-    <strong>
-        VILNO<span>MOV</span>
-    </strong>
+<section class="testimonials" id="reviews">
 
-    <p>
-        Українська мова. Вільне спілкування.
+
+    <h2 class="section-title">
+        Відгуки учнів
+    </h2>
+
+
+    <p class="section-subtitle">
+        Навчання має бути зрозумілим, практичним
+        і приносити результат.
     </p>
 
+
+
+    <div class="reviews">
+
+
+        <div class="review">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                Дуже подобається структура курсу.
+                Нарешті українська перестала здаватися
+                складною.
+            </p>
+
+            <strong>
+                Учень VILNOMOV
+            </strong>
+
+        </div>
+
+
+
+        <div class="review">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                Особливо сподобалося багато практики.
+                Матеріал легко використовувати
+                у повсякденному житті.
+            </p>
+
+            <strong>
+                Учениця VILNOMOV
+            </strong>
+
+        </div>
+
+
+
+        <div class="review">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                Зручний формат онлайн-навчання.
+                Можна займатися у власному темпі.
+            </p>
+
+            <strong>
+                Учень VILNOMOV
+            </strong>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FINAL CTA
+========================= -->
+
+<section class="final-cta">
+
+    <h2>
+        Готовий говорити українською?
+    </h2>
+
+    <p>
+        Почни навчання та зроби українську
+        частиною свого щоденного життя.
+    </p>
+
+    <a href="#pricing" class="main-button">
+        Почати навчання
+    </a>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+    © 2026 VILNOMOV. Українська мова онлайн.
 </footer>
 
 
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
 <script>
 
-/* ПРОКРУТКА К ТАРИФУ */
+document.querySelectorAll('a[href^="#"]').forEach(function(link) {
 
-function scrollToPricing() {
+    link.addEventListener("click", function(event) {
 
-    document.getElementById("pricing").scrollIntoView({
-        behavior: "smooth"
+        const targetId = this.getAttribute("href");
+
+        if (targetId === "#") {
+            return;
+        }
+
+        const target = document.querySelector(targetId);
+
+        if (target) {
+
+            event.preventDefault();
+
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
     });
 
-}
-
-
-/* ПРОКРУТКА К КУРСАМ */
-
-function scrollToLevels() {
-
-    document.getElementById("levels").scrollIntoView({
-        behavior: "smooth"
-    });
-
-}
-
-
-/* ПЕРЕХОД К ОПЛАТЕ WAYFORPAY */
-
-function goToPayment() {
-
-    window.location.href =
-        "https://secure.wayforpay.com/button/b0926264a1f88";
-
-}
+});
 
 </script>
 
+
 </body>
 </html>
-```
